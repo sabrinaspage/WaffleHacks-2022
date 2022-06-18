@@ -15,11 +15,41 @@ import SampleProduct from './screens/SampleProduct';
 const BottomNavigation = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={MarketPlace} />
-      <Tab.Screen name="My Bids" component={MyBids} />
-      <Tab.Screen name="Search" component={Search} />
-      <Tab.Screen name="Profile" component={UserProfile} />
-      <Tab.Screen name="More" component={MoreScreen} />
+      <Tab.Screen
+        name="Home"
+        component={MarketPlace}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="My Bids"
+        component={MyBids}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={UserProfile}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="More"
+        component={MoreScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -34,7 +64,7 @@ function App() {
         <Stack.Screen
           name="bottomnav"
           component={BottomNavigation}
-          screenOptions={{
+          options={{
             headerShown: false,
           }}
         />
