@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 const MarketPlace = () => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text> Mark Place </Text>
+      <Text> Market Place </Text>
     </View>
   );
 };
