@@ -1,41 +1,30 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import {View, Text, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-function HomeScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
+import MarketPlace from './screens/MarketPlace';
+import MyBids from './screens/MyBids';
+import Search from './screens/Search';
+import UserProfile from './screens/UserProfile';
+import MoreScreen from './screens/MoreScreen';
 
-function DetailsScreen({navigation}) {
+const BottomNavigation = () => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back one" onPress={() => navigation.goBack()} />
-      <Button
-        title="Go back to first screen on stack"
-        onPress={() => navigation.popToTop()}
-      />
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={MarketPlace} />
+      <Tab.Screen name="My Bids" component={MyBids} />
+      <Tab.Screen name="Search" component={Search} />
+      <Tab.Screen name="Profile" component={UserProfile} />
+      <Tab.Screen name="More" component={MoreScreen} />
+    </Tab.Navigator>
   );
-}
+};
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
@@ -44,6 +33,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
+      <BottomNavigation />
     </NavigationContainer>
   );
 }
