@@ -10,15 +10,20 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import Bid from '../components/Bid';
+import ModalTester from '../components/BottomModal/BottomModal';
 
 const SampleProduct = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
   const [images, setimages] = useState([
     'https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
     'https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
     'https://images.unsplash.com/photo-1612528443702-f6741f70a049?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80',
   ]);
-
   const [productImg, setProductImg] = useState(images[0]);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   return (
     <View style={{flex: 1, height: '100%'}}>
@@ -60,7 +65,8 @@ const SampleProduct = () => {
           culpa qui officia deserunt mollit anim id est laborum
         </Text>
         <Bid />
-        <Button color="#841584" title="Bid now" />
+        <ModalTester {...{isModalVisible, toggleModal}} />
+        <Button color="#841584" title="Bid now" onPress={toggleModal} />
       </Card>
     </View>
   );
