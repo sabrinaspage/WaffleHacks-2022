@@ -10,6 +10,7 @@ import MyBids from './screens/MyBids';
 import Search from './screens/Search';
 import UserProfile from './screens/UserProfile';
 import MoreScreen from './screens/MoreScreen';
+import SampleProduct from './screens/SampleProduct';
 
 const BottomNavigation = () => {
   return (
@@ -29,7 +30,16 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <BottomNavigation />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="bottomnav"
+          component={BottomNavigation}
+          screenOptions={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="product" component={SampleProduct} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
