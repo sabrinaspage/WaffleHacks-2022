@@ -11,6 +11,28 @@ import Search from './screens/Search';
 import UserProfile from './screens/UserProfile';
 import MoreScreen from './screens/MoreScreen';
 import SampleProduct from './screens/SampleProduct';
+import WelcomeScreen from './screens/Login/WelcomeScreen';
+import LoginScreen from './screens/Login/LoginScreen';
+import RegisterScreen from './screens/Login/RegisterScreen';
+import EnterPhoneScreen from './screens/Login/EnterPhoneScreen';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const LoginNavigation = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="StartScreen"
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="StartScreen" component={WelcomeScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <Stack.Screen name="ResetPasswordScreen" component={EnterPhoneScreen} />
+    </Stack.Navigator>
+  );
+};
 
 const BottomNavigation = () => {
   return (
@@ -54,13 +76,17 @@ const BottomNavigation = () => {
   );
 };
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="loginnav"
+          component={LoginNavigation}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="bottomnav"
           component={BottomNavigation}
