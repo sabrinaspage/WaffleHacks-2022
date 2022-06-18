@@ -87,13 +87,13 @@ function App() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="bottomnav"
           component={BottomNavigation}
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
         <Stack.Screen name="product" component={SampleProduct} />
       </Stack.Navigator>
     </NavigationContainer>

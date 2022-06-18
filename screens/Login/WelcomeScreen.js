@@ -1,29 +1,8 @@
 import React, {useCallback} from 'react';
-import {TouchableOpacity, Text, Linking, View} from 'react-native';
+import {TouchableOpacity, Text, Linking, Image, View} from 'react-native';
 import {Card} from 'react-native-paper';
 
-const OpenURLButton = ({url, children}) => {
-  const handlePress = useCallback(async () => {
-    // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL(url);
-
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${url}`);
-    }
-  }, [url]);
-
-  return (
-    <TouchableOpacity style={styles.confirmButton} onPress={handlePress}>
-      <Text style={styles.addButtonText}>{children}</Text>
-    </TouchableOpacity>
-  );
-};
-
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
   return (
     <View style={styles.view}>
       <Card.Title title="Product" titleStyle={{textAlign: 'center'}} />
@@ -31,14 +10,23 @@ const WelcomeScreen = () => {
         source={{
           uri: 'https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
         }}
+        style={{marginHorizontal: 25}}
       />
       <Card.Title
-        title="Select your Login"
+        title="Select your Registration"
         titleStyle={{textAlign: 'center'}}
       />
-      <OpenURLButton url={'https://identity.deso.org/log-in'}>
-        Sign Into DeSo
-      </OpenURLButton>
+      <TouchableOpacity
+        style={styles.confirmButton}
+        onPress={() => navigation.navigate('LoginScreen')}>
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            style={styles.tinyLogo}
+            source={require('../../images/decentralized-social-deso-logo-D6D277E769-seeklogo.com.png')}
+          />
+          <Text style={styles.text}>Sign in with DeSo</Text>
+        </View>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.confirmButton}>
         <Text style={styles.addButtonText}>Coinbase Wallet</Text>
       </TouchableOpacity>
@@ -49,10 +37,15 @@ const WelcomeScreen = () => {
         <Text style={styles.addButtonText}>Phantom</Text>
       </TouchableOpacity>
       <View>
+        <Text style={{textAlign: 'center', marginTop: 20}}>
+          Already have an account?
+        </Text>
         <Text style={{textAlign: 'center', marginVertical: 20}}>
+          Need help creating a wallet?
+        </Text>
+        <Text style={{textAlign: 'center', color: 'gray', marginTop: 20}}>
           Terms & Conditions
         </Text>
-        <Text style={{textAlign: 'center'}}>Need help creating a wallet?</Text>
       </View>
     </View>
   );
@@ -69,10 +62,20 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
   },
+  text: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  tinyLogo: {
+    width: 20,
+    height: 20,
+  },
   confirmButton: {
-    marginBottom: 2,
+    marginBottom: 4,
     marginHorizontal: 0,
     backgroundColor: '#98B3B7',
+    marginLeft: 25,
+    marginRight: 25,
     height: 70,
     alignItems: 'center',
     justifyContent: 'center',
